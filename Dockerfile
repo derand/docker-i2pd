@@ -36,5 +36,5 @@ EXPOSE 2827 4446 6668 7650 7655 7656 7070
 USER i2pd
 
 #ENTRYPOINT ["/usr/bin/i2pd"]
-#CMD /usr/bin/i2pd --conf=$HOME/.i2pd/i2p.conf
-CMD ["i2pd", "--service=0", "--daemon=0", "--unreachable=1", "--ircdest=irc.postman.i2p"]
+#CMD /usr/bin/i2pd --conf=$HOME/.i2pd/i2pd.conf
+CMD ["i2pd"]

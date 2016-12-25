@@ -5,11 +5,6 @@ Run with the following:
 ````
 docker run --name i2pd -p 7070:7070 -p 4446:4446 -p 6668:6668 derand/i2pd
 ````
-If no parameters are specified, i2pd will be run with the following options:
-
-````
---service=0 --daemon=0 --unreachable=1 --ircdest=irc.postman.i2p
-````
 
 Publish how many (or how few) ports as you want. Ports exposed by default include
 
