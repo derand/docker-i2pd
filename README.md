@@ -3,7 +3,7 @@ This is an unofficial Dockerized i2pd within a Debian Jessie image.
 Run with the following:
 
 ````
-docker run --name i2pd -p 7070:7070 -p 4446:4446 -p 6668:6668 kytv/i2pd
+docker run --name i2pd -p 7070:7070 -p 4446:4446 -p 6668:6668 derand/i2pd
 ````
 If no parameters are specified, i2pd will be run with the following options:
 

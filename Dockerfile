@@ -1,20 +1,21 @@
 FROM debian:jessie
+MAINTAINER derand
 
-MAINTAINER KillYourTV <killyourtv@i2pmail.org>
-ENV DEBIAN_FRONTEND noninteractive
+ARG I2PD_RELEASE=""
 
-ENV HOME /home/i2pd
-RUN useradd --create-home --home-dir $HOME i2pd && chown -R i2pd:i2pd $HOME
+ENV DEBIAN_FRONTEND=noninteractive \
+    HOME=/home/i2pd
 
-
-RUN apt-get update && \
+RUN useradd --create-home --home-dir $HOME i2pd && chown -R i2pd:i2pd $HOME && \
+    apt-get update && \
     apt-get -y install --no-install-recommends build-essential \
                                                ca-certificates \
                                                devscripts      \
                                                equivs          \
                                                git && \
     git clone https://github.com/kytvi2p/i2pd.git -b debian/stable && \
-    cd i2pd && \
+    if [ -n "$I2PD_RELEASE" ]; then echo "I2PD_RELEASE" && cd /i2pd && git checkout tags/"$I2PD_RELEASE"; fi && \
+    cd /i2pd && \
     yes | mk-build-deps -i && \
     debuild -B -uc -us && \
     dpkg -i ../i2pd_*.deb && \
@@ -32,5 +33,7 @@ RUN apt-get update && \
 
 EXPOSE 2827 4446 6668 7650 7655 7656 7070
 USER i2pd
-ENTRYPOINT ["/usr/bin/i2pd"]
-CMD ["--service=0", "--daemon=0", "--unreachable=1", "--ircdest=irc.postman.i2p"]
+
+#ENTRYPOINT ["/usr/bin/i2pd"]
+#CMD /usr/bin/i2pd --conf=$HOME/.i2pd/i2p.conf
+CMD ["i2pd", "--service=0", "--daemon=0", "--unreachable=1", "--ircdest=irc.postman.i2p"]
