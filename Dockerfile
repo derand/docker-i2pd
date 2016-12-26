@@ -6,8 +6,9 @@ ARG I2PD_RELEASE=""
 ENV DEBIAN_FRONTEND=noninteractive \
     HOME=/home/i2pd
 
-RUN useradd --create-home --home-dir $HOME i2pd && chown -R i2pd:i2pd $HOME && \
+RUN useradd --create-home --home-dir $HOME i2pd && \
     mkdir -p $HOME/.i2pd && \
+    chown -R i2pd:i2pd $HOME && \
     apt-get update && \
     apt-get -y install --no-install-recommends build-essential \
                                                ca-certificates \
