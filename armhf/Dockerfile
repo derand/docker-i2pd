@@ -36,6 +36,6 @@ RUN useradd --create-home --home-dir $HOME i2pd && \
 EXPOSE 2827 4446 6668 7650 7655 7656 7070
 USER i2pd
 
-#ENTRYPOINT ["/usr/bin/i2pd"]
+ENTRYPOINT ["/usr/sbin/i2pd"]
 #CMD /usr/bin/i2pd --conf=$HOME/.i2pd/i2pd.conf
-CMD ["i2pd"]
+#CMD ["i2pd"]
